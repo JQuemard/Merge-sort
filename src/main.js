@@ -33,30 +33,29 @@ function mergeSort(input){    ///initial function
 
     return merge(left, right)///this will merge the now sorted sublists.
 }
-
 function merge(left, right){ ///secondary vital function, does the merging of sub lists once the basecase has been reached
     let result = []; ///this will be the final output of program onec all the sublists have merged
 
     while ((left.length > 0) && (right.length > 0)){
-        if(left[0] <= right[0]){
-            result.push(left[0]);
-            left.shift();
+        if(left[0] >= right[0]){  ///this comparitive handles the sorting. it choses to either push left or right to the result list.
+            result.push(left[0]); ///if left is greater or equal to the right it gets pushed to the result list.
+            left.shift();         ///the left is shifted so that only the rest of the list aside of [0] remain. 
         }
         else{
-            result.push(right[0]);
-            right.shift();
-        }
+            result.push(right[0]);///alternatively the right will get added to the results if it is bigger
+            right.shift();///the right is shifted so that only the rest of the list aside of [0] remain. 
+        }///THIS COMPARITIVE DICTATES THE SORT ORDER. <= ascending >= descending
     }
-    while (left.length > 0){
+    while (left.length > 0){ ///consumes the rest of the left list which remains for odd lists
         result.push(left[0]);
         left.shift();
     }
-    while (right.length > 0){
+    while (right.length > 0){///same for the right list which remains
         result.push(right[0]);
         right.shift();
-    }
-
-    return result;
+    } 
+    
+    return result; ///returns result of the merge back to mergesort.
 }
 
 
